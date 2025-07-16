@@ -1,1 +1,237 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
 
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 95%;
+    max-width: 1200px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+}
+
+header h1 {
+    color: #1a2a4b; /* Dark blue from the university logo */
+    margin-bottom: 10px;
+}
+
+.progress-bar-container {
+    width: 80%;
+    margin: 20px auto 0;
+    text-align: left;
+}
+
+.progress-text {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #4CAF50; /* Green for progress */
+    border-radius: 5px;
+    transition: width 0.5s ease-in-out;
+}
+
+#curriculum-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Flexible columns */
+    gap: 20px;
+}
+
+.year-block {
+    grid-column: 1 / -1; /* Spans across all columns */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #1a2a4b;
+    text-align: left;
+    padding-left: 10px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.semester-block {
+    grid-column: 1 / -1; /* Spans across all columns */
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    padding-left: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.courses-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    grid-column: 1 / -1; /* Ensure courses stay within their semester/year block */
+}
+
+.course-card {
+    background-color: #e0f2f7; /* Light blue default, similar to your image */
+    border: 1px solid #b3e5fc;
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    width: 160px; /* Fixed width for uniform appearance */
+    min-height: 80px; /* Minimum height for better layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    font-size: 0.9em;
+    line-height: 1.3;
+    font-weight: bold;
+    position: relative; /* For the strikethrough effect */
+}
+
+.course-card:hover:not(.locked) {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Category-specific colors (based on your image's legend colors) */
+.category-humanidades { background-color: #d1c4e9; border-color: #9575cd; } /* Purple */
+.category-politica-gestion { background-color: #81d4fa; border-color: #29b6f6; } /* Light Blue */
+.category-familia-acompanamiento { background-color: #ffe0b2; border-color: #ffb74d; } /* Orange */
+.category-practica { background-color: #f8bbd0; border-color: #f06292; } /* Pink */
+.category-fundamentos { background-color: #c8e6c9; border-color: #81c784; } /* Green */
+.category-investigacion { background-color: #b3e5fc; border-color: #4fc3f7; } /* Sky Blue */
+.category-curriculo-didactica { background-color: #ffccbc; border-color: #ff8a65; } /* Light Orange */
+.category-electivo { background-color: #ffecb3; border-color: #ffd54f; } /* Yellow */
+
+
+/* Approved state */
+.course-card.approved {
+    background-color: #ffab91; /* Orange from example */
+    border-color: #ff8a65;
+    text-decoration: line-through;
+    color: #666;
+    cursor: default;
+    box-shadow: none;
+}
+
+/* Locked state */
+.course-card.locked {
+    background-color: #eeeeee; /* Grey from example */
+    border-color: #cccccc;
+    color: #999999;
+    cursor: not-allowed;
+    pointer-events: none; /* Disable click events */
+}
+
+/* Legend styling */
+.legend {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    width: fit-content;
+}
+
+.legend h2 {
+    color: #1a2a4b;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.legend ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+}
+
+.legend li {
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Specific legend item colors */
+.legend .category-humanidades { background-color: #d1c4e9; }
+.legend .category-politica-gestion { background-color: #81d4fa; }
+.legend .category-familia-acompanamiento { background-color: #ffe0b2; }
+.legend .category-practica { background-color: #f8bbd0; }
+.legend .category-fundamentos { background-color: #c8e6c9; }
+.legend .category-investigacion { background-color: #b3e5fc; }
+.legend .category-curriculo-didactica { background-color: #ffccbc; }
+.legend .category-electivo { background-color: #ffecb3; }
+.legend .status-approved { background-color: #ffab91; }
+.legend .status-unapproved { background-color: #e0f2f7; }
+.legend .status-locked { background-color: #eeeeee; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    .year-block {
+        font-size: 1.5em;
+    }
+
+    .semester-block {
+        font-size: 1.2em;
+    }
+
+    .course-card {
+        width: calc(50% - 10px); /* Two cards per row on smaller screens */
+        font-size: 0.85em;
+        min-height: 70px;
+    }
+
+    .legend ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .course-card {
+        width: 100%; /* Full width on very small screens */
+    }
+}
